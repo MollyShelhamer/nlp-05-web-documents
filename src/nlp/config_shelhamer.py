@@ -3,7 +3,7 @@ src/nlp/config_shelhamer.py - Module 5 Configuration
 (COPY AND MODIFY THIS FILE - do not edit the original)
 
 Stores configuration values for the web document EVTL pipeline.
-Source: arXiv abstract page for "Agents of Chaos" (2602.20021)
+Source: arXiv abstract page for "Exploring Robust Multi-Agent Workflows for Environmental Data Management" (2604.01647)
 
 Purpose
 
