@@ -89,7 +89,6 @@ Then edit your copied Python file to:
 import logging
 
 from bs4 import BeautifulSoup, Tag
-import pandas as pd
 
 # ============================================================
 # Section 2. Define Run Transform Function
@@ -99,15 +98,15 @@ import pandas as pd
 def run_transform(
     soup: BeautifulSoup,
     LOG: logging.Logger,
-) -> pd.DataFrame:
-    """Transform HTML into a structured DataFrame.
+) -> dict:
+    """Transform HTML into a structured record dict.
 
     Args:
         soup (BeautifulSoup): Validated BeautifulSoup object.
         LOG (logging.Logger): The logger instance.
 
     Returns:
-        pd.DataFrame: The transformed dataset.
+        dict: The transformed record.
     """
     LOG.info("========================")
     LOG.info("STAGE 03: TRANSFORM starting...")
@@ -275,6 +274,65 @@ def run_transform(
     LOG.info("STAGE 03f: Build record and create DataFrame")
     LOG.info("========================")
 
+    # Extract full paper fields if available
+    LOG.info("Extracting full paper fields if available")
+
+    # Introduction
+    intro_h2 = soup.find(
+        lambda tag: tag.name == "h2" and "introduction" in tag.get_text().lower()
+    )
+    introduction = ""
+    if intro_h2:
+        sibling = intro_h2.find_next_sibling()
+        while sibling and sibling.name != "h2":
+            if sibling.name == "p":
+                introduction += sibling.get_text(strip=True) + " "
+            sibling = sibling.find_next_sibling()
+    introduction = introduction.strip() if introduction else "unknown"
+
+    # Conclusion
+    conc_h2 = soup.find(
+        lambda tag: tag.name == "h2" and "conclusion" in tag.get_text().lower()
+    )
+    conclusion = ""
+    if conc_h2:
+        sibling = conc_h2.find_next_sibling()
+        while sibling and sibling.name not in ["h2", "h1"]:
+            if sibling.name == "p":
+                conclusion += sibling.get_text(strip=True) + " "
+            sibling = sibling.find_next_sibling()
+    conclusion = conclusion.strip() if conclusion else "unknown"
+
+    # Section headings
+    section_headings = [
+        h.get_text(strip=True)
+        for h in soup.find_all(["h1", "h2", "h3"])
+        if h.get_text(strip=True)
+    ]
+    num_sections = len(section_headings)
+
+    # References count
+    ref_h2 = soup.find(
+        lambda tag: tag.name == "h2" and "references" in tag.get_text().lower()
+    )
+    references_count = 0
+    if ref_h2:
+        refs = ref_h2.find_next_siblings()
+        for ref in refs:
+            if ref.name in ["ol", "ul"]:
+                references_count = len(ref.find_all("li"))
+                break
+
+    # Word count
+    full_text = soup.get_text()
+    word_count = len(full_text.split())
+
+    LOG.info(f"Extracted introduction (first 100 chars): {introduction[:100]}...")
+    LOG.info(f"Extracted conclusion (first 100 chars): {conclusion[:100]}...")
+    LOG.info(f"Number of sections: {num_sections}")
+    LOG.info(f"References count: {references_count}")
+    LOG.info(f"Full paper word count: {word_count}")
+
     record = {
         "arxiv_id": arxiv_id,
         "title": title,
@@ -284,20 +342,22 @@ def run_transform(
         "abstract": abstract,
         "abstract_word_count": abstract_word_count,
         "author_count": author_count,
+        "introduction": introduction,
+        "conclusion": conclusion,
+        "num_sections": num_sections,
+        "references_count": references_count,
+        "word_count": word_count,
+        "section_headings": "; ".join(section_headings),
     }
-
-    df = pd.DataFrame([record])
-    LOG.info(f"Created DataFrame with {len(df)} row and {len(df.columns)} columns")
-    LOG.info(f"Columns: {list(df.columns)}")
 
     LOG.info("DataFrame Details")
     LOG.info(f"  Title: {title}")
     LOG.info(f"  Author count: {record['author_count']}")
     LOG.info(f"  Abstract word count: {record['abstract_word_count']}")
-    LOG.info(f"  DataFrame preview:\n{df.head()}")
+    LOG.info(f"  DataFrame preview: {record}")
 
-    LOG.info("Sink: Pandas DataFrame created")
+    LOG.info("Sink: record dict created")
     LOG.info("Transformation complete.")
 
-    # Return the transformed DataFrame for use in the Load stage.
-    return df
+    # Return the transformed record dict for use in the Load stage.
+    return record

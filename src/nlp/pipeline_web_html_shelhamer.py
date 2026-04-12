@@ -43,13 +43,16 @@ Run from root project folder with:
 import logging
 
 from datafun_toolkit.logger import get_logger, log_header, log_path
+import pandas as pd
 
 from nlp.config_shelhamer import (
     DATA_PATH,
+    FULL_PAGE_URL,
     HTTP_REQUEST_HEADERS,
     PAGE_URL,
     PROCESSED_CSV_PATH,
     PROCESSED_PATH,
+    RAW_HTML_FULL_PATH,
     RAW_HTML_PATH,
     RAW_PATH,
     ROOT_PATH,
@@ -83,25 +86,62 @@ def main() -> None:
     log_path(LOG, "RAW_PATH", RAW_PATH)
     log_path(LOG, "PROCESSED_PATH", PROCESSED_PATH)
 
-    # EXTRACT
-    html_content = run_extract(
+    # EXTRACT abstract
+    html_content_abstract = run_extract(
         source_url=PAGE_URL,
         http_request_headers=HTTP_REQUEST_HEADERS,
         raw_html_path=RAW_HTML_PATH,
         LOG=LOG,
     )
 
-    # VALIDATE
-    validated_soup = run_validate(
-        html_content=html_content,
+    # VALIDATE abstract
+    validated_soup_abstract = run_validate(
+        html_content=html_content_abstract,
         LOG=LOG,
     )
 
-    # TRANSFORM
-    df = run_transform(
-        soup=validated_soup,
+    # TRANSFORM abstract
+    record_abstract = run_transform(
+        soup=validated_soup_abstract,
         LOG=LOG,
     )
+
+    # EXTRACT full paper
+    html_content_full = run_extract(
+        source_url=FULL_PAGE_URL,
+        http_request_headers=HTTP_REQUEST_HEADERS,
+        raw_html_path=RAW_HTML_FULL_PATH,
+        LOG=LOG,
+    )
+
+    # VALIDATE full paper
+    validated_soup_full = run_validate(
+        html_content=html_content_full,
+        LOG=LOG,
+    )
+
+    # TRANSFORM full paper
+    record_full = run_transform(
+        soup=validated_soup_full,
+        LOG=LOG,
+    )
+
+    # Merge records, keeping abstract data and adding full paper data
+    merged_record = record_abstract.copy()
+    full_keys = {
+        "introduction",
+        "conclusion",
+        "num_sections",
+        "references_count",
+        "word_count",
+        "section_headings",
+    }
+    for k in full_keys:
+        if k in record_full:
+            merged_record[k] = record_full[k]
+
+    # Create DataFrame
+    df = pd.DataFrame([merged_record])
 
     # LOAD
     run_load(

@@ -37,6 +37,9 @@ from pathlib import Path
 PAGE_URL: str = "https://arxiv.org/abs/2604.01647"
 # arXiv abstract page — stable, scraping-friendly, academically relevant
 
+FULL_PAGE_URL: str = "https://arxiv.org/html/2604.01647v1"
+# arXiv full paper HTML page
+
 # Let them know who we are (and that we're doing educational web mining).
 HTTP_REQUEST_HEADERS: dict = {
     "User-Agent": "Mozilla/5.0 (educational-use; web-mining-course)"
@@ -54,4 +57,5 @@ PROCESSED_PATH: Path = DATA_PATH / "processed"
 # TODO: In your custom app, change the output file names from case_
 # to something that represents YOUR custom project.
 RAW_HTML_PATH: Path = RAW_PATH / "shelhamer_raw.html"
+RAW_HTML_FULL_PATH: Path = RAW_PATH / "shelhamer_full_raw.html"
 PROCESSED_CSV_PATH: Path = PROCESSED_PATH / "shelhamer_processed.csv"

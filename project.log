@@ -453,3 +453,781 @@
 2026-04-12 14:38:49 | INFO | CI | ========================
 2026-04-12 14:38:49 | INFO | CI | Pipeline executed successfully!
 2026-04-12 14:38:49 | INFO | CI | ========================
+2026-04-12 14:55:01 | INFO | CI | === RUN START ===
+2026-04-12 14:55:01 | INFO | CI | project=Module 5: EVTL PIPELINE - WEB DOCUMENTS (HTML)
+2026-04-12 14:55:01 | INFO | CI | repo_dir=nlp-05-web-documents
+2026-04-12 14:55:01 | INFO | CI | python=3.14.3
+2026-04-12 14:55:01 | INFO | CI | os=Windows 10
+2026-04-12 14:55:01 | INFO | CI | shell=powershell
+2026-04-12 14:55:01 | INFO | CI | cwd=.
+2026-04-12 14:55:01 | INFO | CI | github_actions=False
+2026-04-12 14:55:01 | INFO | CI | START PIPELINE
+2026-04-12 14:55:01 | INFO | CI | ROOT_PATH = .
+2026-04-12 14:55:01 | INFO | CI | DATA_PATH = data
+2026-04-12 14:55:01 | INFO | CI | RAW_PATH = data\raw
+2026-04-12 14:55:01 | INFO | CI | PROCESSED_PATH = data\processed
+2026-04-12 14:55:01 | INFO | CI | ========================
+2026-04-12 14:55:01 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 14:55:01 | INFO | CI | ========================
+2026-04-12 14:55:01 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/abs/2604.01647
+2026-04-12 14:55:02 | INFO | CI | SOURCE URL = https://arxiv.org/abs/2604.01647
+2026-04-12 14:55:02 | INFO | CI | SINK PATH = data\raw\shelhamer_raw.html
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 14:55:02 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 14:55:02 | INFO | CI | Top-level elements: ['html']
+2026-04-12 14:55:02 | INFO | CI | VALIDATE: Title found: True
+2026-04-12 14:55:02 | INFO | CI | VALIDATE: Authors found: True
+2026-04-12 14:55:02 | INFO | CI | VALIDATE: Abstract found: True
+2026-04-12 14:55:02 | INFO | CI | VALIDATE: Subjects found: True
+2026-04-12 14:55:02 | INFO | CI | VALIDATE: Dateline found: True
+2026-04-12 14:55:02 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-12 14:55:02 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | Extracting metadata from HTML
+2026-04-12 14:55:02 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-12 14:55:02 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-12 14:55:02 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | Extracted title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 14:55:02 | INFO | CI | Extracted authors: Boyuan Guan, Jason Liu, Yanzhao Wu, Kiavash Bahreini
+2026-04-12 14:55:02 | INFO | CI | Extracted abstract: Embedding LLM-driven agents into environmental FAIR data management is compelling - they can externa...
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | Extracted subjects: Computer Science > Artificial Intelligence
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | Extracted submitted: [Submitted on 2 Apr 2026]
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | Extracted arxiv_id: 2604.01647
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | Calculated abstract word count: 230
+2026-04-12 14:55:02 | INFO | CI | Calculated author count: 4
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | Created DataFrame with 1 row and 8 columns
+2026-04-12 14:55:02 | INFO | CI | Columns: ['arxiv_id', 'title', 'authors', 'subjects', 'submitted', 'abstract', 'abstract_word_count', 'author_count']
+2026-04-12 14:55:02 | INFO | CI | DataFrame Details
+2026-04-12 14:55:02 | INFO | CI |   Title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 14:55:02 | INFO | CI |   Author count: 4
+2026-04-12 14:55:02 | INFO | CI |   Abstract word count: 230
+2026-04-12 14:55:02 | INFO | CI |   DataFrame preview:
+     arxiv_id  ... author_count
+0  2604.01647  ...            4
+
+[1 rows x 8 columns]
+2026-04-12 14:55:02 | INFO | CI | Sink: Pandas DataFrame created
+2026-04-12 14:55:02 | INFO | CI | Transformation complete.
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 04: LOAD starting...
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | SINK PATH = data\processed\shelhamer_processed.csv
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | Starting full paper processing...
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/html/2604.01647v1
+2026-04-12 14:55:02 | INFO | CI | SOURCE URL = https://arxiv.org/html/2604.01647v1
+2026-04-12 14:55:02 | INFO | CI | SINK PATH = data\raw\shelhamer_full_raw.html
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | STAGE 02 FULL: VALIDATE starting...
+2026-04-12 14:55:02 | INFO | CI | ========================
+2026-04-12 14:55:02 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 14:55:02 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 14:55:02 | INFO | CI | Top-level elements: ['html']
+2026-04-12 14:55:02 | INFO | CI | VALIDATE FULL: Title found: True
+2026-04-12 14:55:02 | INFO | CI | VALIDATE FULL: Introduction found: False
+2026-04-12 14:55:02 | INFO | CI | VALIDATE FULL: Conclusion found: False
+2026-04-12 14:55:02 | INFO | CI | VALIDATE FULL: References found: True
+2026-04-12 14:56:02 | INFO | CI | === RUN START ===
+2026-04-12 14:56:02 | INFO | CI | project=Module 5: EVTL PIPELINE - WEB DOCUMENTS (HTML)
+2026-04-12 14:56:02 | INFO | CI | repo_dir=nlp-05-web-documents
+2026-04-12 14:56:02 | INFO | CI | python=3.14.3
+2026-04-12 14:56:02 | INFO | CI | os=Windows 10
+2026-04-12 14:56:02 | INFO | CI | shell=powershell
+2026-04-12 14:56:02 | INFO | CI | cwd=.
+2026-04-12 14:56:02 | INFO | CI | github_actions=False
+2026-04-12 14:56:02 | INFO | CI | START PIPELINE
+2026-04-12 14:56:02 | INFO | CI | ROOT_PATH = .
+2026-04-12 14:56:02 | INFO | CI | DATA_PATH = data
+2026-04-12 14:56:02 | INFO | CI | RAW_PATH = data\raw
+2026-04-12 14:56:02 | INFO | CI | PROCESSED_PATH = data\processed
+2026-04-12 14:56:02 | INFO | CI | ========================
+2026-04-12 14:56:02 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 14:56:02 | INFO | CI | ========================
+2026-04-12 14:56:02 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/abs/2604.01647
+2026-04-12 14:56:03 | INFO | CI | SOURCE URL = https://arxiv.org/abs/2604.01647
+2026-04-12 14:56:03 | INFO | CI | SINK PATH = data\raw\shelhamer_raw.html
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 14:56:03 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 14:56:03 | INFO | CI | Top-level elements: ['html']
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Title found: True
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Authors found: True
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Abstract found: True
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Subjects found: True
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Dateline found: True
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-12 14:56:03 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracting metadata from HTML
+2026-04-12 14:56:03 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-12 14:56:03 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-12 14:56:03 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracted title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 14:56:03 | INFO | CI | Extracted authors: Boyuan Guan, Jason Liu, Yanzhao Wu, Kiavash Bahreini
+2026-04-12 14:56:03 | INFO | CI | Extracted abstract: Embedding LLM-driven agents into environmental FAIR data management is compelling - they can externa...
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracted subjects: Computer Science > Artificial Intelligence
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracted submitted: [Submitted on 2 Apr 2026]
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracted arxiv_id: 2604.01647
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Calculated abstract word count: 230
+2026-04-12 14:56:03 | INFO | CI | Calculated author count: 4
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracting full paper fields if available
+2026-04-12 14:56:03 | INFO | CI | Extracted introduction (first 100 chars): unknown...
+2026-04-12 14:56:03 | INFO | CI | Extracted conclusion (first 100 chars): unknown...
+2026-04-12 14:56:03 | INFO | CI | Number of sections: 13
+2026-04-12 14:56:03 | INFO | CI | References count: 0
+2026-04-12 14:56:03 | INFO | CI | Full paper word count: 751
+2026-04-12 14:56:03 | INFO | CI | Created DataFrame with 1 row and 14 columns
+2026-04-12 14:56:03 | INFO | CI | Columns: ['arxiv_id', 'title', 'authors', 'subjects', 'submitted', 'abstract', 'abstract_word_count', 'author_count', 'introduction', 'conclusion', 'num_sections', 'references_count', 'word_count', 'section_headings']
+2026-04-12 14:56:03 | INFO | CI | DataFrame Details
+2026-04-12 14:56:03 | INFO | CI |   Title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 14:56:03 | INFO | CI |   Author count: 4
+2026-04-12 14:56:03 | INFO | CI |   Abstract word count: 230
+2026-04-12 14:56:03 | INFO | CI |   DataFrame preview:
+     arxiv_id  ...                                   section_headings
+0  2604.01647  ...  quick links; Computer Science > Artificial Int...
+
+[1 rows x 14 columns]
+2026-04-12 14:56:03 | INFO | CI | Sink: Pandas DataFrame created
+2026-04-12 14:56:03 | INFO | CI | Transformation complete.
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 04: LOAD starting...
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | SINK PATH = data\processed\shelhamer_processed.csv
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Starting full paper processing...
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/html/2604.01647v1
+2026-04-12 14:56:03 | INFO | CI | SOURCE URL = https://arxiv.org/html/2604.01647v1
+2026-04-12 14:56:03 | INFO | CI | SINK PATH = data\raw\shelhamer_full_raw.html
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 14:56:03 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 14:56:03 | INFO | CI | Top-level elements: ['html']
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Title found: True
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Authors found: False
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Abstract found: False
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Subjects found: False
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: Dateline found: False
+2026-04-12 14:56:03 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-12 14:56:03 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracting metadata from HTML
+2026-04-12 14:56:03 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-12 14:56:03 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-12 14:56:03 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracted title: unknown
+2026-04-12 14:56:03 | INFO | CI | Extracted authors: unknown
+2026-04-12 14:56:03 | INFO | CI | Extracted abstract: unknown...
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracted subjects: unknown
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracted submitted: unknown
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | WARNING | CI | Canonical link not found, setting arXiv ID to 'unknown'
+2026-04-12 14:56:03 | INFO | CI | Extracted arxiv_id: unknown
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Calculated abstract word count: 0
+2026-04-12 14:56:03 | INFO | CI | Calculated author count: 0
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Extracting full paper fields if available
+2026-04-12 14:56:03 | INFO | CI | Extracted introduction (first 100 chars): unknown...
+2026-04-12 14:56:03 | INFO | CI | Extracted conclusion (first 100 chars): unknown...
+2026-04-12 14:56:03 | INFO | CI | Number of sections: 17
+2026-04-12 14:56:03 | INFO | CI | References count: 26
+2026-04-12 14:56:03 | INFO | CI | Full paper word count: 5798
+2026-04-12 14:56:03 | INFO | CI | Created DataFrame with 1 row and 14 columns
+2026-04-12 14:56:03 | INFO | CI | Columns: ['arxiv_id', 'title', 'authors', 'subjects', 'submitted', 'abstract', 'abstract_word_count', 'author_count', 'introduction', 'conclusion', 'num_sections', 'references_count', 'word_count', 'section_headings']
+2026-04-12 14:56:03 | INFO | CI | DataFrame Details
+2026-04-12 14:56:03 | INFO | CI |   Title: unknown
+2026-04-12 14:56:03 | INFO | CI |   Author count: 0
+2026-04-12 14:56:03 | INFO | CI |   Abstract word count: 0
+2026-04-12 14:56:03 | INFO | CI |   DataFrame preview:
+  arxiv_id  ...                                   section_headings
+0  unknown  ...  Exploring Robust Multi-Agent Workflows for Env...
+
+[1 rows x 14 columns]
+2026-04-12 14:56:03 | INFO | CI | Sink: Pandas DataFrame created
+2026-04-12 14:56:03 | INFO | CI | Transformation complete.
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | STAGE 04: LOAD starting...
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | SINK PATH = data\processed\shelhamer_full_processed.csv
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 14:56:03 | INFO | CI | Pipeline executed successfully!
+2026-04-12 14:56:03 | INFO | CI | ========================
+2026-04-12 15:00:04 | INFO | CI | === RUN START ===
+2026-04-12 15:00:04 | INFO | CI | project=Module 5: EVTL PIPELINE - WEB DOCUMENTS (HTML)
+2026-04-12 15:00:04 | INFO | CI | repo_dir=nlp-05-web-documents
+2026-04-12 15:00:04 | INFO | CI | python=3.14.3
+2026-04-12 15:00:04 | INFO | CI | os=Windows 10
+2026-04-12 15:00:04 | INFO | CI | shell=powershell
+2026-04-12 15:00:04 | INFO | CI | cwd=.
+2026-04-12 15:00:04 | INFO | CI | github_actions=False
+2026-04-12 15:00:04 | INFO | CI | START PIPELINE
+2026-04-12 15:00:04 | INFO | CI | ROOT_PATH = .
+2026-04-12 15:00:04 | INFO | CI | DATA_PATH = data
+2026-04-12 15:00:04 | INFO | CI | RAW_PATH = data\raw
+2026-04-12 15:00:04 | INFO | CI | PROCESSED_PATH = data\processed
+2026-04-12 15:00:04 | INFO | CI | ========================
+2026-04-12 15:00:04 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 15:00:04 | INFO | CI | ========================
+2026-04-12 15:00:04 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/abs/2604.01647
+2026-04-12 15:00:05 | INFO | CI | SOURCE URL = https://arxiv.org/abs/2604.01647
+2026-04-12 15:00:05 | INFO | CI | SINK PATH = data\raw\shelhamer_raw.html
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 15:00:05 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 15:00:05 | INFO | CI | Top-level elements: ['html']
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Title found: True
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Authors found: True
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Abstract found: True
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Subjects found: True
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Dateline found: True
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-12 15:00:05 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracting metadata from HTML
+2026-04-12 15:00:05 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-12 15:00:05 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-12 15:00:05 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracted title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 15:00:05 | INFO | CI | Extracted authors: Boyuan Guan, Jason Liu, Yanzhao Wu, Kiavash Bahreini
+2026-04-12 15:00:05 | INFO | CI | Extracted abstract: Embedding LLM-driven agents into environmental FAIR data management is compelling - they can externa...
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracted subjects: Computer Science > Artificial Intelligence
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracted submitted: [Submitted on 2 Apr 2026]
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracted arxiv_id: 2604.01647
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Calculated abstract word count: 230
+2026-04-12 15:00:05 | INFO | CI | Calculated author count: 4
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracting full paper fields if available
+2026-04-12 15:00:05 | INFO | CI | Extracted introduction (first 100 chars): unknown...
+2026-04-12 15:00:05 | INFO | CI | Extracted conclusion (first 100 chars): unknown...
+2026-04-12 15:00:05 | INFO | CI | Number of sections: 13
+2026-04-12 15:00:05 | INFO | CI | References count: 0
+2026-04-12 15:00:05 | INFO | CI | Full paper word count: 751
+2026-04-12 15:00:05 | INFO | CI | DataFrame Details
+2026-04-12 15:00:05 | INFO | CI |   Title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 15:00:05 | INFO | CI |   Author count: 4
+2026-04-12 15:00:05 | INFO | CI |   Abstract word count: 230
+2026-04-12 15:00:05 | INFO | CI |   DataFrame preview: {'arxiv_id': '2604.01647', 'title': 'Exploring Robust Multi-Agent Workflows for Environmental Data Management', 'authors': 'Boyuan Guan, Jason Liu, Yanzhao Wu, Kiavash Bahreini', 'subjects': 'Computer Science > Artificial Intelligence', 'submitted': '[Submitted on 2 Apr 2026]', 'abstract': "Embedding LLM-driven agents into environmental FAIR data management is compelling - they can externalize operational knowledge and scale curation across heterogeneous data and evolving conventions. However, replacing deterministic components with probabilistic workflows changes the failure mode: LLM pipelines may generate plausible but incorrect outputs that pass superficial checks and propagate into irreversible actions such as DOI minting and public release. We introduce EnviSmart, a production data management system deployed on campus-wide storage infrastructure for environmental research. EnviSmart treats reliability as an architectural property through two mechanisms: a three-track knowledge architecture that externalizes behaviors (governance constraints), domain knowledge (retrievable context), and skills (tool-using procedures) as persistent, interlocking artifacts; and a role-separated multi-agent design where deterministic validators and audited handoffs restore fail-stop semantics at trust boundaries before irreversible steps. We compare two production deployments. The University's GIS Center Ecological Archive (849 curated datasets) serves as a single-agent baseline. SF2Bench, a compound flooding benchmark comprising 2,452 monitoring stations and 8,557 published files spanning 39 years, validates the multi-agent workflow. The multi-agent approach improved both efficiency - completed by a single operator in two days with repeated artifact reuse across deployments - and reliability: audited handoffs detected and blocked a coordinate transformation error affecting all 2,452 stations before publication. A representative incident (ISS-004) demonstrated boundary-based containment with 10-minute detection latency, zero user exposure, and 80-minute resolution. This paper has been accepted at PEARC 2026.", 'abstract_word_count': 230, 'author_count': 4, 'introduction': 'unknown', 'conclusion': 'unknown', 'num_sections': 13, 'references_count': 0, 'word_count': 751, 'section_headings': 'quick links; Computer Science > Artificial Intelligence; Title:Exploring Robust Multi-Agent Workflows for Environmental Data Management; Submission history; Access Paper:; References & Citations; BibTeX formatted citation; Bookmark; Bibliographic and Citation Tools; Code, Data and Media Associated with this Article; Demos; Recommenders and Search Tools; arXivLabs: experimental projects with community collaborators'}
+2026-04-12 15:00:05 | INFO | CI | Sink: record dict created
+2026-04-12 15:00:05 | INFO | CI | Transformation complete.
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/html/2604.01647v1
+2026-04-12 15:00:05 | INFO | CI | SOURCE URL = https://arxiv.org/html/2604.01647v1
+2026-04-12 15:00:05 | INFO | CI | SINK PATH = data\raw\shelhamer_full_raw.html
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 15:00:05 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 15:00:05 | INFO | CI | Top-level elements: ['html']
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Title found: True
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Authors found: False
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Abstract found: False
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Subjects found: False
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: Dateline found: False
+2026-04-12 15:00:05 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-12 15:00:05 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracting metadata from HTML
+2026-04-12 15:00:05 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-12 15:00:05 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-12 15:00:05 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracted title: unknown
+2026-04-12 15:00:05 | INFO | CI | Extracted authors: unknown
+2026-04-12 15:00:05 | INFO | CI | Extracted abstract: unknown...
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracted subjects: unknown
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracted submitted: unknown
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | WARNING | CI | Canonical link not found, setting arXiv ID to 'unknown'
+2026-04-12 15:00:05 | INFO | CI | Extracted arxiv_id: unknown
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Calculated abstract word count: 0
+2026-04-12 15:00:05 | INFO | CI | Calculated author count: 0
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Extracting full paper fields if available
+2026-04-12 15:00:05 | INFO | CI | Extracted introduction (first 100 chars): unknown...
+2026-04-12 15:00:05 | INFO | CI | Extracted conclusion (first 100 chars): unknown...
+2026-04-12 15:00:05 | INFO | CI | Number of sections: 17
+2026-04-12 15:00:05 | INFO | CI | References count: 26
+2026-04-12 15:00:05 | INFO | CI | Full paper word count: 5798
+2026-04-12 15:00:05 | INFO | CI | DataFrame Details
+2026-04-12 15:00:05 | INFO | CI |   Title: unknown
+2026-04-12 15:00:05 | INFO | CI |   Author count: 0
+2026-04-12 15:00:05 | INFO | CI |   Abstract word count: 0
+2026-04-12 15:00:05 | INFO | CI |   DataFrame preview: {'arxiv_id': 'unknown', 'title': 'unknown', 'authors': 'unknown', 'subjects': 'unknown', 'submitted': 'unknown', 'abstract': 'unknown', 'abstract_word_count': 0, 'author_count': 0, 'introduction': 'unknown', 'conclusion': 'unknown', 'num_sections': 17, 'references_count': 26, 'word_count': 5798, 'section_headings': 'Exploring Robust Multi-Agent Workflows for Environmental Data Management; 1.Introduction; 2.Problem Statement; 3.System Design; 3.1.Agent-Level Knowledge Externalization: Three-Track Architecture; 3.2.System-Level Error Containment: MAS with Audited Handoffs; 4.Case Studies and Evaluation; 4.1.Evaluation Questions; 4.2.Case Study 1: GIS Center Ecological Data Archive (Single-Agent Baseline); 4.3.Case Study 2: SF2Bench Multi-Platform Publication (MAS Architecture); 4.4.Summary Evidence Mapped to Design Goals; 4.5.Summary: Single-Agent vs. MAS Operating Model; 5.Related Work; 6.Discussion and Limitations; 7.Conclusion; References; Instructions for reporting errors'}
+2026-04-12 15:00:05 | INFO | CI | Sink: record dict created
+2026-04-12 15:00:05 | INFO | CI | Transformation complete.
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | STAGE 04: LOAD starting...
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | SINK PATH = data\processed\shelhamer_processed.csv
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:05 | INFO | CI | Pipeline executed successfully!
+2026-04-12 15:00:05 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | === RUN START ===
+2026-04-12 15:00:46 | INFO | CI | project=Module 5: EVTL PIPELINE - WEB DOCUMENTS (HTML)
+2026-04-12 15:00:46 | INFO | CI | repo_dir=nlp-05-web-documents
+2026-04-12 15:00:46 | INFO | CI | python=3.14.3
+2026-04-12 15:00:46 | INFO | CI | os=Windows 10
+2026-04-12 15:00:46 | INFO | CI | shell=powershell
+2026-04-12 15:00:46 | INFO | CI | cwd=.
+2026-04-12 15:00:46 | INFO | CI | github_actions=False
+2026-04-12 15:00:46 | INFO | CI | START PIPELINE
+2026-04-12 15:00:46 | INFO | CI | ROOT_PATH = .
+2026-04-12 15:00:46 | INFO | CI | DATA_PATH = data
+2026-04-12 15:00:46 | INFO | CI | RAW_PATH = data\raw
+2026-04-12 15:00:46 | INFO | CI | PROCESSED_PATH = data\processed
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/abs/2604.01647
+2026-04-12 15:00:46 | INFO | CI | SOURCE URL = https://arxiv.org/abs/2604.01647
+2026-04-12 15:00:46 | INFO | CI | SINK PATH = data\raw\shelhamer_raw.html
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 15:00:46 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 15:00:46 | INFO | CI | Top-level elements: ['html']
+2026-04-12 15:00:46 | INFO | CI | VALIDATE: Title found: True
+2026-04-12 15:00:46 | INFO | CI | VALIDATE: Authors found: True
+2026-04-12 15:00:46 | INFO | CI | VALIDATE: Abstract found: True
+2026-04-12 15:00:46 | INFO | CI | VALIDATE: Subjects found: True
+2026-04-12 15:00:46 | INFO | CI | VALIDATE: Dateline found: True
+2026-04-12 15:00:46 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-12 15:00:46 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | Extracting metadata from HTML
+2026-04-12 15:00:46 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-12 15:00:46 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-12 15:00:46 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | Extracted title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 15:00:46 | INFO | CI | Extracted authors: Boyuan Guan, Jason Liu, Yanzhao Wu, Kiavash Bahreini
+2026-04-12 15:00:46 | INFO | CI | Extracted abstract: Embedding LLM-driven agents into environmental FAIR data management is compelling - they can externa...
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | Extracted subjects: Computer Science > Artificial Intelligence
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | Extracted submitted: [Submitted on 2 Apr 2026]
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | Extracted arxiv_id: 2604.01647
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | Calculated abstract word count: 230
+2026-04-12 15:00:46 | INFO | CI | Calculated author count: 4
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | Extracting full paper fields if available
+2026-04-12 15:00:46 | INFO | CI | Extracted introduction (first 100 chars): unknown...
+2026-04-12 15:00:46 | INFO | CI | Extracted conclusion (first 100 chars): unknown...
+2026-04-12 15:00:46 | INFO | CI | Number of sections: 13
+2026-04-12 15:00:46 | INFO | CI | References count: 0
+2026-04-12 15:00:46 | INFO | CI | Full paper word count: 751
+2026-04-12 15:00:46 | INFO | CI | DataFrame Details
+2026-04-12 15:00:46 | INFO | CI |   Title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 15:00:46 | INFO | CI |   Author count: 4
+2026-04-12 15:00:46 | INFO | CI |   Abstract word count: 230
+2026-04-12 15:00:46 | INFO | CI |   DataFrame preview: {'arxiv_id': '2604.01647', 'title': 'Exploring Robust Multi-Agent Workflows for Environmental Data Management', 'authors': 'Boyuan Guan, Jason Liu, Yanzhao Wu, Kiavash Bahreini', 'subjects': 'Computer Science > Artificial Intelligence', 'submitted': '[Submitted on 2 Apr 2026]', 'abstract': "Embedding LLM-driven agents into environmental FAIR data management is compelling - they can externalize operational knowledge and scale curation across heterogeneous data and evolving conventions. However, replacing deterministic components with probabilistic workflows changes the failure mode: LLM pipelines may generate plausible but incorrect outputs that pass superficial checks and propagate into irreversible actions such as DOI minting and public release. We introduce EnviSmart, a production data management system deployed on campus-wide storage infrastructure for environmental research. EnviSmart treats reliability as an architectural property through two mechanisms: a three-track knowledge architecture that externalizes behaviors (governance constraints), domain knowledge (retrievable context), and skills (tool-using procedures) as persistent, interlocking artifacts; and a role-separated multi-agent design where deterministic validators and audited handoffs restore fail-stop semantics at trust boundaries before irreversible steps. We compare two production deployments. The University's GIS Center Ecological Archive (849 curated datasets) serves as a single-agent baseline. SF2Bench, a compound flooding benchmark comprising 2,452 monitoring stations and 8,557 published files spanning 39 years, validates the multi-agent workflow. The multi-agent approach improved both efficiency - completed by a single operator in two days with repeated artifact reuse across deployments - and reliability: audited handoffs detected and blocked a coordinate transformation error affecting all 2,452 stations before publication. A representative incident (ISS-004) demonstrated boundary-based containment with 10-minute detection latency, zero user exposure, and 80-minute resolution. This paper has been accepted at PEARC 2026.", 'abstract_word_count': 230, 'author_count': 4, 'introduction': 'unknown', 'conclusion': 'unknown', 'num_sections': 13, 'references_count': 0, 'word_count': 751, 'section_headings': 'quick links; Computer Science > Artificial Intelligence; Title:Exploring Robust Multi-Agent Workflows for Environmental Data Management; Submission history; Access Paper:; References & Citations; BibTeX formatted citation; Bookmark; Bibliographic and Citation Tools; Code, Data and Media Associated with this Article; Demos; Recommenders and Search Tools; arXivLabs: experimental projects with community collaborators'}
+2026-04-12 15:00:46 | INFO | CI | Sink: record dict created
+2026-04-12 15:00:46 | INFO | CI | Transformation complete.
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/html/2604.01647v1
+2026-04-12 15:00:46 | INFO | CI | SOURCE URL = https://arxiv.org/html/2604.01647v1
+2026-04-12 15:00:46 | INFO | CI | SINK PATH = data\raw\shelhamer_full_raw.html
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-12 15:00:46 | INFO | CI | ========================
+2026-04-12 15:00:46 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 15:00:46 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 15:00:46 | INFO | CI | Top-level elements: ['html']
+2026-04-12 15:00:47 | INFO | CI | VALIDATE: Title found: True
+2026-04-12 15:00:47 | INFO | CI | VALIDATE: Authors found: False
+2026-04-12 15:00:47 | INFO | CI | VALIDATE: Abstract found: False
+2026-04-12 15:00:47 | INFO | CI | VALIDATE: Subjects found: False
+2026-04-12 15:00:47 | INFO | CI | VALIDATE: Dateline found: False
+2026-04-12 15:00:47 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-12 15:00:47 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | Extracting metadata from HTML
+2026-04-12 15:00:47 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-12 15:00:47 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-12 15:00:47 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | Extracted title: unknown
+2026-04-12 15:00:47 | INFO | CI | Extracted authors: unknown
+2026-04-12 15:00:47 | INFO | CI | Extracted abstract: unknown...
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | Extracted subjects: unknown
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | Extracted submitted: unknown
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | WARNING | CI | Canonical link not found, setting arXiv ID to 'unknown'
+2026-04-12 15:00:47 | INFO | CI | Extracted arxiv_id: unknown
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | Calculated abstract word count: 0
+2026-04-12 15:00:47 | INFO | CI | Calculated author count: 0
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | Extracting full paper fields if available
+2026-04-12 15:00:47 | INFO | CI | Extracted introduction (first 100 chars): unknown...
+2026-04-12 15:00:47 | INFO | CI | Extracted conclusion (first 100 chars): unknown...
+2026-04-12 15:00:47 | INFO | CI | Number of sections: 17
+2026-04-12 15:00:47 | INFO | CI | References count: 26
+2026-04-12 15:00:47 | INFO | CI | Full paper word count: 5798
+2026-04-12 15:00:47 | INFO | CI | DataFrame Details
+2026-04-12 15:00:47 | INFO | CI |   Title: unknown
+2026-04-12 15:00:47 | INFO | CI |   Author count: 0
+2026-04-12 15:00:47 | INFO | CI |   Abstract word count: 0
+2026-04-12 15:00:47 | INFO | CI |   DataFrame preview: {'arxiv_id': 'unknown', 'title': 'unknown', 'authors': 'unknown', 'subjects': 'unknown', 'submitted': 'unknown', 'abstract': 'unknown', 'abstract_word_count': 0, 'author_count': 0, 'introduction': 'unknown', 'conclusion': 'unknown', 'num_sections': 17, 'references_count': 26, 'word_count': 5798, 'section_headings': 'Exploring Robust Multi-Agent Workflows for Environmental Data Management; 1.Introduction; 2.Problem Statement; 3.System Design; 3.1.Agent-Level Knowledge Externalization: Three-Track Architecture; 3.2.System-Level Error Containment: MAS with Audited Handoffs; 4.Case Studies and Evaluation; 4.1.Evaluation Questions; 4.2.Case Study 1: GIS Center Ecological Data Archive (Single-Agent Baseline); 4.3.Case Study 2: SF2Bench Multi-Platform Publication (MAS Architecture); 4.4.Summary Evidence Mapped to Design Goals; 4.5.Summary: Single-Agent vs. MAS Operating Model; 5.Related Work; 6.Discussion and Limitations; 7.Conclusion; References; Instructions for reporting errors'}
+2026-04-12 15:00:47 | INFO | CI | Sink: record dict created
+2026-04-12 15:00:47 | INFO | CI | Transformation complete.
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | STAGE 04: LOAD starting...
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | SINK PATH = data\processed\shelhamer_processed.csv
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:00:47 | INFO | CI | Pipeline executed successfully!
+2026-04-12 15:00:47 | INFO | CI | ========================
+2026-04-12 15:01:16 | INFO | CI | === RUN START ===
+2026-04-12 15:01:16 | INFO | CI | project=Module 5: EVTL PIPELINE - WEB DOCUMENTS (HTML)
+2026-04-12 15:01:16 | INFO | CI | repo_dir=nlp-05-web-documents
+2026-04-12 15:01:16 | INFO | CI | python=3.14.3
+2026-04-12 15:01:16 | INFO | CI | os=Windows 10
+2026-04-12 15:01:16 | INFO | CI | shell=powershell
+2026-04-12 15:01:16 | INFO | CI | cwd=.
+2026-04-12 15:01:16 | INFO | CI | github_actions=False
+2026-04-12 15:01:16 | INFO | CI | START PIPELINE
+2026-04-12 15:01:16 | INFO | CI | ROOT_PATH = .
+2026-04-12 15:01:16 | INFO | CI | DATA_PATH = data
+2026-04-12 15:01:16 | INFO | CI | RAW_PATH = data\raw
+2026-04-12 15:01:16 | INFO | CI | PROCESSED_PATH = data\processed
+2026-04-12 15:01:16 | INFO | CI | ========================
+2026-04-12 15:01:16 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 15:01:16 | INFO | CI | ========================
+2026-04-12 15:01:16 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/abs/2604.01647
+2026-04-12 15:01:17 | INFO | CI | SOURCE URL = https://arxiv.org/abs/2604.01647
+2026-04-12 15:01:17 | INFO | CI | SINK PATH = data\raw\shelhamer_raw.html
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 15:01:17 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 15:01:17 | INFO | CI | Top-level elements: ['html']
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Title found: True
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Authors found: True
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Abstract found: True
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Subjects found: True
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Dateline found: True
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-12 15:01:17 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracting metadata from HTML
+2026-04-12 15:01:17 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-12 15:01:17 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-12 15:01:17 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracted title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 15:01:17 | INFO | CI | Extracted authors: Boyuan Guan, Jason Liu, Yanzhao Wu, Kiavash Bahreini
+2026-04-12 15:01:17 | INFO | CI | Extracted abstract: Embedding LLM-driven agents into environmental FAIR data management is compelling - they can externa...
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracted subjects: Computer Science > Artificial Intelligence
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracted submitted: [Submitted on 2 Apr 2026]
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracted arxiv_id: 2604.01647
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Calculated abstract word count: 230
+2026-04-12 15:01:17 | INFO | CI | Calculated author count: 4
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracting full paper fields if available
+2026-04-12 15:01:17 | INFO | CI | Extracted introduction (first 100 chars): unknown...
+2026-04-12 15:01:17 | INFO | CI | Extracted conclusion (first 100 chars): unknown...
+2026-04-12 15:01:17 | INFO | CI | Number of sections: 13
+2026-04-12 15:01:17 | INFO | CI | References count: 0
+2026-04-12 15:01:17 | INFO | CI | Full paper word count: 751
+2026-04-12 15:01:17 | INFO | CI | DataFrame Details
+2026-04-12 15:01:17 | INFO | CI |   Title: Exploring Robust Multi-Agent Workflows for Environmental Data Management
+2026-04-12 15:01:17 | INFO | CI |   Author count: 4
+2026-04-12 15:01:17 | INFO | CI |   Abstract word count: 230
+2026-04-12 15:01:17 | INFO | CI |   DataFrame preview: {'arxiv_id': '2604.01647', 'title': 'Exploring Robust Multi-Agent Workflows for Environmental Data Management', 'authors': 'Boyuan Guan, Jason Liu, Yanzhao Wu, Kiavash Bahreini', 'subjects': 'Computer Science > Artificial Intelligence', 'submitted': '[Submitted on 2 Apr 2026]', 'abstract': "Embedding LLM-driven agents into environmental FAIR data management is compelling - they can externalize operational knowledge and scale curation across heterogeneous data and evolving conventions. However, replacing deterministic components with probabilistic workflows changes the failure mode: LLM pipelines may generate plausible but incorrect outputs that pass superficial checks and propagate into irreversible actions such as DOI minting and public release. We introduce EnviSmart, a production data management system deployed on campus-wide storage infrastructure for environmental research. EnviSmart treats reliability as an architectural property through two mechanisms: a three-track knowledge architecture that externalizes behaviors (governance constraints), domain knowledge (retrievable context), and skills (tool-using procedures) as persistent, interlocking artifacts; and a role-separated multi-agent design where deterministic validators and audited handoffs restore fail-stop semantics at trust boundaries before irreversible steps. We compare two production deployments. The University's GIS Center Ecological Archive (849 curated datasets) serves as a single-agent baseline. SF2Bench, a compound flooding benchmark comprising 2,452 monitoring stations and 8,557 published files spanning 39 years, validates the multi-agent workflow. The multi-agent approach improved both efficiency - completed by a single operator in two days with repeated artifact reuse across deployments - and reliability: audited handoffs detected and blocked a coordinate transformation error affecting all 2,452 stations before publication. A representative incident (ISS-004) demonstrated boundary-based containment with 10-minute detection latency, zero user exposure, and 80-minute resolution. This paper has been accepted at PEARC 2026.", 'abstract_word_count': 230, 'author_count': 4, 'introduction': 'unknown', 'conclusion': 'unknown', 'num_sections': 13, 'references_count': 0, 'word_count': 751, 'section_headings': 'quick links; Computer Science > Artificial Intelligence; Title:Exploring Robust Multi-Agent Workflows for Environmental Data Management; Submission history; Access Paper:; References & Citations; BibTeX formatted citation; Bookmark; Bibliographic and Citation Tools; Code, Data and Media Associated with this Article; Demos; Recommenders and Search Tools; arXivLabs: experimental projects with community collaborators'}
+2026-04-12 15:01:17 | INFO | CI | Sink: record dict created
+2026-04-12 15:01:17 | INFO | CI | Transformation complete.
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 01: EXTRACT starting... 
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | EXTRACT: Fetching HTML from https://arxiv.org/html/2604.01647v1
+2026-04-12 15:01:17 | INFO | CI | SOURCE URL = https://arxiv.org/html/2604.01647v1
+2026-04-12 15:01:17 | INFO | CI | SINK PATH = data\raw\shelhamer_full_raw.html
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 02: VALIDATE starting...
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | HTML STRUCTURE INSPECTION:
+2026-04-12 15:01:17 | INFO | CI | Top-level type: BeautifulSoup
+2026-04-12 15:01:17 | INFO | CI | Top-level elements: ['html']
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Title found: True
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Authors found: False
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Abstract found: False
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Subjects found: False
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: Dateline found: False
+2026-04-12 15:01:17 | INFO | CI | VALIDATE: HTML structure is valid.
+2026-04-12 15:01:17 | INFO | CI | Sink: validated BeautifulSoup object
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03: TRANSFORM starting...
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracting metadata from HTML
+2026-04-12 15:01:17 | INFO | CI | We must manually inspect the HTML structure to identify the fields we want to extract.
+2026-04-12 15:01:17 | INFO | CI | For this arXiv page, we can extract:
+- Title from <h1 class='title'>
+- Authors from <div class='authors'>
+- Abstract from <blockquote class='abstract'>
+- Primary subject from <div class='subheader'>
+- Submission date from <div class='dateline'>
+- ArXiv ID from canonical link
+2026-04-12 15:01:17 | INFO | CI | Replace any missing content with `unknown` to ensure all are strings.
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03a: Extract bibliographic fields (title, authors, abstract)
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracted title: unknown
+2026-04-12 15:01:17 | INFO | CI | Extracted authors: unknown
+2026-04-12 15:01:17 | INFO | CI | Extracted abstract: unknown...
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03b: Extract metadata field subjects from subheader
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracted subjects: unknown
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03c: Extract metadata field date from dateline
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracted submitted: unknown
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03d: Extract metadata field arxiv_id from canonical link
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | WARNING | CI | Canonical link not found, setting arXiv ID to 'unknown'
+2026-04-12 15:01:17 | INFO | CI | Extracted arxiv_id: unknown
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03e: Calculate derived fields
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Calculated abstract word count: 0
+2026-04-12 15:01:17 | INFO | CI | Calculated author count: 0
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 03f: Build record and create DataFrame
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Extracting full paper fields if available
+2026-04-12 15:01:17 | INFO | CI | Extracted introduction (first 100 chars): unknown...
+2026-04-12 15:01:17 | INFO | CI | Extracted conclusion (first 100 chars): unknown...
+2026-04-12 15:01:17 | INFO | CI | Number of sections: 17
+2026-04-12 15:01:17 | INFO | CI | References count: 26
+2026-04-12 15:01:17 | INFO | CI | Full paper word count: 5798
+2026-04-12 15:01:17 | INFO | CI | DataFrame Details
+2026-04-12 15:01:17 | INFO | CI |   Title: unknown
+2026-04-12 15:01:17 | INFO | CI |   Author count: 0
+2026-04-12 15:01:17 | INFO | CI |   Abstract word count: 0
+2026-04-12 15:01:17 | INFO | CI |   DataFrame preview: {'arxiv_id': 'unknown', 'title': 'unknown', 'authors': 'unknown', 'subjects': 'unknown', 'submitted': 'unknown', 'abstract': 'unknown', 'abstract_word_count': 0, 'author_count': 0, 'introduction': 'unknown', 'conclusion': 'unknown', 'num_sections': 17, 'references_count': 26, 'word_count': 5798, 'section_headings': 'Exploring Robust Multi-Agent Workflows for Environmental Data Management; 1.Introduction; 2.Problem Statement; 3.System Design; 3.1.Agent-Level Knowledge Externalization: Three-Track Architecture; 3.2.System-Level Error Containment: MAS with Audited Handoffs; 4.Case Studies and Evaluation; 4.1.Evaluation Questions; 4.2.Case Study 1: GIS Center Ecological Data Archive (Single-Agent Baseline); 4.3.Case Study 2: SF2Bench Multi-Platform Publication (MAS Architecture); 4.4.Summary Evidence Mapped to Design Goals; 4.5.Summary: Single-Agent vs. MAS Operating Model; 5.Related Work; 6.Discussion and Limitations; 7.Conclusion; References; Instructions for reporting errors'}
+2026-04-12 15:01:17 | INFO | CI | Sink: record dict created
+2026-04-12 15:01:17 | INFO | CI | Transformation complete.
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | STAGE 04: LOAD starting...
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | SINK PATH = data\processed\shelhamer_processed.csv
+2026-04-12 15:01:17 | INFO | CI | ========================
+2026-04-12 15:01:17 | INFO | CI | Pipeline executed successfully!
+2026-04-12 15:01:17 | INFO | CI | ========================

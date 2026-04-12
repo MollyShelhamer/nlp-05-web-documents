@@ -1,5 +1,5 @@
 """
-src/nlp/stage02_validate_case.py - Validate Stage
+src/nlp/stage02_validate_shelhamer.py - Validate Stage
 (EDIT YOUR COPY OF THIS FILE)
 
 Source: Raw HTML string
@@ -82,7 +82,7 @@ def run_validate(
     # ============================================================
 
     # Check for expected structural elements
-    title = soup.find("h1", class_="title")
+    title = soup.find("h1", class_="title") or soup.find("h1")
     authors = soup.find("div", class_="authors")
     abstract = soup.find("blockquote", class_="abstract")
     subjects = soup.find("div", class_="subheader")
@@ -97,14 +97,6 @@ def run_validate(
     missing = []
     if not title:
         missing.append("title")
-    if not authors:
-        missing.append("authors")
-    if not abstract:
-        missing.append("abstract")
-    if not subjects:
-        missing.append("subjects")
-    if not dateline:
-        missing.append("dateline")
 
     if missing:
         raise ValueError(
